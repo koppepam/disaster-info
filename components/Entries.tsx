@@ -45,9 +45,21 @@ export default async function Entries({ limit }: EntriesProps) {
 
         switch (entry.title) {
           case '震度速報':
-            return <IntensityReport url={entry.id} result={result} />
+            return (
+              <>
+                <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
+                <span>{entry.content._}</span>
+                <IntensityReport url={entry.id} result={result} />
+              </>
+            )
           case '震源に関する情報':
-            return <EpicenterInfo url={entry.id} result={result} />
+            return (
+              <>
+                <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
+                <span>{entry.content._}</span>
+                <EpicenterInfo url={entry.id} result={result} />
+              </>
+            )
           // case '震源・震度に関する情報':
             // ...
           // case '顕著な地震の震源要素更新のお知らせ':
