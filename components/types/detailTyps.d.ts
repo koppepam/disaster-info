@@ -74,6 +74,7 @@ export type GeneratedType4 = {
 export type Area = {
   Name: string
   Code: string
+  MaxInt?: string
 }
 
 export type Body = {

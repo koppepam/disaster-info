@@ -3,7 +3,7 @@
 // import type {} from '@/components/types/types';
 import type { Root } from '@/components/types/detailTyps';
 
-export default function EpicenterInfo ({result}: {result: Root}) {
+export default function EpicenterInfo ({result, url}: {result: Root, url:string}) {
   return (
     <div>
       <div>震源地 : {result.Report.Body.Earthquake.Hypocenter.Area.Name}</div>

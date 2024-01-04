@@ -8,8 +8,8 @@ import EpicenterInfo from '@/components/detail-case/EpicenterInfo';
 // ({ feedtype, limit }: EntriesProps)
 
 export default async function Entries({ limit }: EntriesProps) {
-  // const response = await fetch(`https://www.data.jma.go.jp/developer/xml/feed/${feedtype}`);
-  const response = await fetch(`https://koppepam.github.io/disaster-info-data/eqvol.xml`) // 地震データ
+  const response = await fetch(`https://www.data.jma.go.jp/developer/xml/feed/eqvol_l.xml`);
+  // const response = await fetch(`https://koppepam.github.io/disaster-info-data/eqvol.xml`) // 地震データ
   const xml = await response.text();
   const parser = new xml2js.Parser({ explicitArray: false });
   const { feed } = await parser.parseStringPromise(xml);
@@ -42,16 +42,12 @@ export default async function Entries({ limit }: EntriesProps) {
         await fs.writeFile(`tmp/detail-${i}.json`, JSON.stringify(result, null, 2));
 
         // console.dir(result, { depth: null});
-        const earthquakeInfo = /地震(?!動)|震源|震度/.test(entry.title) // 地震情報
-        const tsunamiInfo = /津波/.test(entry.title) // 津波情報
-        const volcanoInfo = /火山|火口|噴火|降灰/.test(entry.title) // 火山情報
-        // console.log('entry.title => ', entry.title);
 
         switch (entry.title) {
           case '震度速報':
-            return <IntensityReport result={result} />
+            return <IntensityReport url={entry.id} result={result} />
           case '震源に関する情報':
-            return <EpicenterInfo result={result} />
+            return <EpicenterInfo url={entry.id} result={result} />
           // case '震源・震度に関する情報':
             // ...
           // case '顕著な地震の震源要素更新のお知らせ':

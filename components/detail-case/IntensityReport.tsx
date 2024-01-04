@@ -1,22 +1,26 @@
 // entry.title => 震度速報 のとき
  
-import type { Pref, Area, City } from '@/components/types/types';
-import type { Root } from '@/components/types/detailTyps';
+// import type { Pref } from '@/components/types/types';
+import type { Pref, Root, Area } from '@/components/types/detailTyps';
+import { renderToStaticMarkup } from 'react-dom/server';
 
-export default function IntensityReport ({result}: {result: Root}) {
+export default function IntensityReport ({result, url}: {result: Root, url:string}) {
   let cities;
-  if (Array.isArray(result.Report.Body.Intensity.Observation.Pref)){ // Pref 複数のとき
-    const prefs = result.Report.Body.Intensity.Observation.Pref.map((pref: Pref) => {
-      if (Array.isArray(pref.Area)) { // Area 複数のとき
-        const areas = pref.Area.map((area: Area) => {
-          const _cities = Array.isArray(area.City) ? area.City : [ area.City ]; // city 配列
-          cities = _cities.map((city: City) => {
-            return {name: city.Name, maxInt: parseInt(city.MaxInt, 10)}
-          })
-        })
-      }
-    })
-  }
-  console.log('cities => ', cities);
-  return <></>
+  if (result.Report.Head.InfoType === '取消') {
+    return <>取消された情報 : {url}</>
+  } 
+  const pref = result.Report.Body.Intensity.Observation.Pref;
+  const prefsArray = Array.isArray(pref) ? pref : [ pref ];
+  const prefs = prefsArray.map((pref: Pref) => {
+    const areasArray = Array.isArray(pref.Area) ? pref.Area : [ pref.Area ];
+    const areas = areasArray.map((area: Area) => {
+      return (
+        <div>
+          <span>エリア: {area.Name} 震度 {area.MaxInt ?? '震度情報なし'}</span>
+        </div>
+      );
+    });
+    return areas;
+  });
+  return prefs;
 }
