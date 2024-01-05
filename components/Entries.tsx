@@ -46,20 +46,22 @@ export default async function Entries({ limit }: EntriesProps) {
         switch (entry.title) {
           case '震度速報':
             return (
-              <div className='border-b border-blue-500 mx-10 py-5'>
+              <div className='border-b border-blue-900 mx-10 py-5'>
                 <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
                 <span>{entry.content._}</span>
-                <div className='flex flex-row flex-wrap'>
+                <div className='flex flex-row flex-wrap text-gray-700'>
                   <IntensityReport url={entry.id} result={result} />
                 </div>
               </div>
             )
           case '震源に関する情報':
             return (
-              <div className='border-b border-blue-500 mx-10 py-5'>
+              <div className='border-b border-blue-900 mx-10 py-5'>
                 <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
                 <span>{entry.content._}</span>
-                <EpicenterInfo url={entry.id} result={result} />
+                <div className='text-gray-700'>
+                  <EpicenterInfo url={entry.id} result={result} />
+                </div>
               </div>
             )
           // case '震源・震度に関する情報':
