@@ -15,7 +15,7 @@ export default function IntensityReport ({result, url}: {result: Root, url:strin
     const areasArray = Array.isArray(pref.Area) ? pref.Area : [ pref.Area ];
     const areas = areasArray.map((area: Area) => {
       return (
-        <div>
+        <div className='mx-5 mt-2'>
           <span>エリア: {area.Name} 震度 {area.MaxInt ?? '震度情報なし'}</span>
         </div>
       );
