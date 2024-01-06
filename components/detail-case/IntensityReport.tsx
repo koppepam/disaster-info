@@ -1,11 +1,9 @@
 // entry.title => 震度速報 のとき
  
-// import type { Pref } from '@/components/types/types';
 import type { Pref, Root, Area } from '@/components/types/detailTyps';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 export default function IntensityReport ({result, url}: {result: Root, url:string}) {
-  let cities;
   if (result.Report.Head.InfoType === '取消') {
     return <>取消された情報 : {url}</>
   } 

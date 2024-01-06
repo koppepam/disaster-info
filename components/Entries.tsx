@@ -4,6 +4,7 @@ import { EntriesProps, Entry } from '@/components/types/types';
 
 import IntensityReport from '@/components/detail-case/IntensityReport';
 import EpicenterInfo from '@/components/detail-case/EpicenterInfo';
+import WInfo from './detail-case/WInfo';
 
 // ({ feedtype, limit }: EntriesProps)
 
@@ -64,8 +65,16 @@ export default async function Entries({ limit }: EntriesProps) {
                 </div>
               </div>
             )
-          // case '震源・震度に関する情報':
-            // ...
+          case '震源・震度に関する情報':
+            return (
+              <div className='border-b border-blue-900 mx-10 py-5'>
+                <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
+                <span>{entry.content._}</span>
+                <div>
+                  <WInfo url={entry.id} result={result} />
+                </div>
+              </div>
+            )
           // case '顕著な地震の震源要素更新のお知らせ':
             // ...
           // case '長周期地震動に関する観測情報':
