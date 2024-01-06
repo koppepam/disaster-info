@@ -56,6 +56,9 @@ export type GeneratedType3 = {
 export type Item = {
   Kind: Kind
   Areas: Areas
+  Area: Area
+  Category: Category
+  MaxHeight?: MaxHeight
 }
 
 export type Kind = {
@@ -76,6 +79,7 @@ export type Area = {
   Code: string
   MaxInt?: string
   MaxLgInt?: string
+  Category?: Category
 }
 
 export type Body = {
@@ -83,11 +87,37 @@ export type Body = {
   Earthquake: Earthquake
   Intensity: Intensity
   Comments: Comments
+  Tsunami: Tsunami
 }
 
 export type GeneratedType5 = {
   xmlns: string
   "xmlns:jmx_eb": string
+}
+
+export type Tsunami = {
+  Forecast: Forecast
+}
+
+export type Forecast = {
+  Item: Item
+}
+
+export type Category = {
+  Kind: Kind
+}
+
+export type MaxHeight = {
+  "jmx_eb:TsunamiHeight": JmxEbTsunamiHeight
+}
+
+export type Kind = {
+  Name: string
+}
+
+export type JmxEbTsunamiHeight = {
+  _: string
+  $: GeneratedType8
 }
 
 export type Earthquake = {

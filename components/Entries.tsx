@@ -7,6 +7,7 @@ import EpicenterInfo from '@/components/detail-case/EpicenterInfo';
 import WInfo from './detail-case/WInfo';
 import UpdateInfo from './detail-case/UpdateInfo';
 import LPGMInfo from './detail-case/LPGMInfo';
+import TsunamiAlarm from './detail-case/TsunamiAlarm';
 
 // ({ feedtype, limit }: EntriesProps)
 
@@ -94,12 +95,34 @@ export default async function Entries({ limit }: EntriesProps) {
                 <span>{entry.content._}</span>
                 <div className='flex flex-row flex-wrap text-gray-700'>
                   <LPGMInfo url={entry.id} result={result} />
-                  <span>{result.Report.Body.Comments.FreeFormComment}</span>
                 </div>
+                <span>{result.Report.Body.Comments.FreeFormComment}</span>
               </div>
             );
-          // case '津波警報・注意報・予報a':
-            // ...
+          case '津波警報・注意報・予報a':
+            const canceled = /解除/;
+            if (canceled.test(entry.content._)) {
+              return (
+                <div className='border-b border-blue-900 mx-10 py-5'>
+                  <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
+                  <span>{entry.content._ + '以下は継続中です。'}</span>
+                  <div className='flex flex-row flex-wrap text-gray-700'>
+                    <TsunamiAlarm url={entry.id} result={result} />
+                  </div>
+                  <span>{result.Report.Body.Comments.WarningComment.Text}</span>
+                </div>
+              );
+            }
+            return (
+              <div className='border-b border-blue-900 mx-10 py-5'>
+                <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
+                <span>{entry.content._}</span>
+                <div className='flex flex-row flex-wrap text-gray-700'>
+                  <TsunamiAlarm url={entry.id} result={result} />
+                </div>
+                <span>{result.Report.Body.Comments.WarningComment.Text}</span>
+              </div>
+            );
           // case '津波情報a':
             // ...
           // case '沖合の津波観測に関する情報':
