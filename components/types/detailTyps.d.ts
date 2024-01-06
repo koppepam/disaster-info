@@ -75,6 +75,7 @@ export type Area = {
   Name: string
   Code: string
   MaxInt?: string
+  MaxLgInt?: string
 }
 
 export type Body = {
@@ -103,7 +104,7 @@ export type Hypocenter = {
 export type Area2 = {
   Name: string
   Code: Code
-  "jmx_eb:Coordinate": JmxEbCoordinate
+  "jmx_eb:Coordinate": JmxEbCoordinate | JmxEbCoordinate[]
 }
 
 export type Code = {
@@ -182,6 +183,7 @@ export type City = {
 export type Comments = {
   ForecastComment: ForecastComment
   VarComment: VarComment
+  FreeFormComment: string
 }
 
 export type ForecastComment = {

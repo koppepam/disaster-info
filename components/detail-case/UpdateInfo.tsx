@@ -1,9 +1,9 @@
-// entry.title => 震源に関する情報 のとき
+// entry.title => 顕著な地震の震源要素更新のお知らせ のとき
 
 // import type {} from '@/components/types/types';
 import type { Root } from '@/components/types/detailTyps';
 
-export default function EpicenterInfo ({result, url}: {result: Root, url:string}) {
+export default function UpdateInfo ({result, url}: {result: Root, url:string}) {
   const centerArea = result.Report.Body.Earthquake.Hypocenter.Area;
   const centerArray = Array.isArray(centerArea['jmx_eb:Coordinate']) ? centerArea['jmx_eb:Coordinate'][1] : centerArea['jmx_eb:Coordinate'];
   return (

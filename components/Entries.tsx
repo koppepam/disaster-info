@@ -5,6 +5,8 @@ import { EntriesProps, Entry } from '@/components/types/types';
 import IntensityReport from '@/components/detail-case/IntensityReport';
 import EpicenterInfo from '@/components/detail-case/EpicenterInfo';
 import WInfo from './detail-case/WInfo';
+import UpdateInfo from './detail-case/UpdateInfo';
+import LPGMInfo from './detail-case/LPGMInfo';
 
 // ({ feedtype, limit }: EntriesProps)
 
@@ -54,7 +56,7 @@ export default async function Entries({ limit }: EntriesProps) {
                   <IntensityReport url={entry.id} result={result} />
                 </div>
               </div>
-            )
+            );
           case '震源に関する情報':
             return (
               <div className='border-b border-blue-900 mx-10 py-5'>
@@ -64,7 +66,7 @@ export default async function Entries({ limit }: EntriesProps) {
                   <EpicenterInfo url={entry.id} result={result} />
                 </div>
               </div>
-            )
+            );
           case '震源・震度に関する情報':
             return (
               <div className='border-b border-blue-900 mx-10 py-5'>
@@ -74,11 +76,28 @@ export default async function Entries({ limit }: EntriesProps) {
                   <WInfo url={entry.id} result={result} />
                 </div>
               </div>
-            )
-          // case '顕著な地震の震源要素更新のお知らせ':
-            // ...
-          // case '長周期地震動に関する観測情報':
-            // ...
+            );
+          case '顕著な地震の震源要素更新のお知らせ':
+            return (
+              <div className='border-b border-blue-900 mx-10 py-5'>
+                <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
+                <span>{entry.content._}</span>
+                <div className='text-gray-700'>
+                  <UpdateInfo url={entry.id} result={result} />
+                </div>
+              </div>
+            );
+          case '長周期地震動に関する観測情報':
+            return (
+              <div className='border-b border-blue-900 mx-10 py-5'>
+                <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
+                <span>{entry.content._}</span>
+                <div className='flex flex-row flex-wrap text-gray-700'>
+                  <LPGMInfo url={entry.id} result={result} />
+                  <span>{result.Report.Body.Comments.FreeFormComment}</span>
+                </div>
+              </div>
+            );
           // case '津波警報・注意報・予報a':
             // ...
           // case '津波情報a':
