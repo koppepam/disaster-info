@@ -1,6 +1,6 @@
 // entry.title => 津波警報・注意報・予報a のとき
  
-import type { Pref, Root, Area, Item } from '@/components/types/detailTyps';
+import type { Root, Item } from '@/components/types/detailTyps';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 export default function TsunamiAlarm ({result, url}: {result: Root, url:string}) {

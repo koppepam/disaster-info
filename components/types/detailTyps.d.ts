@@ -59,6 +59,7 @@ export type Item = {
   Area: Area
   Category: Category
   MaxHeight?: MaxHeight
+  Station: Station
 }
 
 export type Kind = {
@@ -97,10 +98,16 @@ export type GeneratedType5 = {
 
 export type Tsunami = {
   Forecast: Forecast
+  Observation: Observation
 }
 
 export type Forecast = {
   Item: Item
+}
+
+export type Observation = {
+  Item: Item
+  Pref: Pref
 }
 
 export type Category = {
@@ -109,6 +116,12 @@ export type Category = {
 
 export type MaxHeight = {
   "jmx_eb:TsunamiHeight": JmxEbTsunamiHeight
+  Condition: string
+}
+
+export type Station = {
+  Name: string
+  MaxHeight: MaxHeight
 }
 
 export type Kind = {
