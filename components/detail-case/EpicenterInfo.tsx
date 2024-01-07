@@ -1,4 +1,4 @@
-// entry.title => 震源に関する情報 のとき
+// entry.title => 震源に関する情報 のとき => データなし
 
 // import type {} from '@/components/types/types';
 import type { Root } from '@/components/types/detailTyps';

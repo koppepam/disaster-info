@@ -9,6 +9,7 @@ import UpdateInfo from './detail-case/UpdateInfo';
 import LPGMInfo from './detail-case/LPGMInfo';
 import TsunamiAlarm from './detail-case/TsunamiAlarm';
 import TsunamiInfo from './detail-case/TsunamiInfo';
+import CoastInfo from './detail-case/CoastInfo';
 
 // ({ feedtype, limit }: EntriesProps)
 
@@ -135,8 +136,16 @@ export default async function Entries({ limit }: EntriesProps) {
                 <span>{result.Report.Body.Comments.WarningComment.Text}</span>
               </div>
             );
-          // case '沖合の津波観測に関する情報':
-            // ...
+          case '沖合の津波観測に関する情報':
+            return (
+              <div className='border-b border-blue-900 mx-10 py-5'>
+                <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
+                <span>{entry.content._}</span>
+                <div>
+                  <CoastInfo url={entry.id} result={result} />
+                </div>
+              </div>
+            );
           // case '台風の暴風域に入る確率':
             // ...
           // case '台風解析・予報情報（５日予報）（Ｈ３０）':
