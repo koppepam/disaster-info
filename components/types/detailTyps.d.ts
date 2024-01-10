@@ -46,7 +46,7 @@ export type Headline = {
 
 export type Information = {
   $: GeneratedType3
-  Item: Item
+  Item: Item | Item[]
 }
 
 export type GeneratedType3 = {
@@ -64,6 +64,22 @@ export type Item = {
 
 export type Kind = {
   Name: string
+  Property: Property
+}
+
+export type Property = {
+  Code: string
+  Name: string
+  Value: string
+  FiftyKtWindProbabilityPart: FiftyKtWindProbabilityPart
+}
+
+export type FiftyKtWindProbabilityPart = {
+  FiftyKtWindProbability: FiftyKtWindProbability
+}
+
+export type FiftyKtWindProbability = {
+  _: string
 }
 
 export type Areas = {
@@ -76,6 +92,7 @@ export type GeneratedType4 = {
 }
 
 export type Area = {
+  Prefecture: string
   Name: string
   Code: string
   MaxInt?: string
@@ -89,6 +106,15 @@ export type Body = {
   Intensity: Intensity
   Comments: Comments
   Tsunami: Tsunami
+  MeteorologicalInfos: MeteorologicalInfos
+}
+
+export type MeteorologicalInfos = {
+  MeteorologicalInfo: MeteorologicalInfo
+}
+
+export type MeteorologicalInfo = {
+  Item: Item
 }
 
 export type GeneratedType5 = {
@@ -206,7 +232,7 @@ export type Pref = {
   Name: string
   Code: string
   MaxInt: string
-  Area: Area3
+  Area: Area3 | Area3[]
 }
 
 export type Area3 = {

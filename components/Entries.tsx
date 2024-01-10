@@ -10,12 +10,13 @@ import LPGMInfo from './detail-case/LPGMInfo';
 import TsunamiAlarm from './detail-case/TsunamiAlarm';
 import TsunamiInfo from './detail-case/TsunamiInfo';
 import CoastInfo from './detail-case/CoastInfo';
+import TyphoonProb from './detail-case/TyphoonProb';
 
 // ({ feedtype, limit }: EntriesProps)
 
 export default async function Entries({ limit }: EntriesProps) {
-  const response = await fetch(`https://www.data.jma.go.jp/developer/xml/feed/eqvol_l.xml`);
-  // const response = await fetch(`https://koppepam.github.io/disaster-info-data/eqvol.xml`) // 地震データ
+  // const response = await fetch(`https://www.data.jma.go.jp/developer/xml/feed/eqvol_l.xml`);
+  const response = await fetch(`https://koppepam.github.io/disaster-info-data/eqvol.xml`);
   const xml = await response.text();
   const parser = new xml2js.Parser({ explicitArray: false });
   const { feed } = await parser.parseStringPromise(xml);
@@ -28,7 +29,7 @@ export default async function Entries({ limit }: EntriesProps) {
   return ( 
     <main>
       {entries.map(async(entry, i) => {
-        const response = await fetch(entry.id); // 詳細XML
+        const response = await fetch(entry.id, {cache: "no-store" }); // 詳細XML
 
         if (!response.ok) {
           return (
@@ -48,6 +49,7 @@ export default async function Entries({ limit }: EntriesProps) {
         await fs.writeFile(`tmp/detail-${i}.json`, JSON.stringify(result, null, 2));
 
         // console.dir(result, { depth: null});
+
 
         switch (entry.title) {
           case '震度速報':
@@ -146,10 +148,15 @@ export default async function Entries({ limit }: EntriesProps) {
                 </div>
               </div>
             );
-          // case '台風の暴風域に入る確率':
-            // ...
-          // case '台風解析・予報情報（５日予報）（Ｈ３０）':
-            // ...
+          case '台風の暴風域に入る確率':
+            return (
+              <div className='border-b border-blue-900 mx-10 py-5'>
+                <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
+                <div>
+                  <TyphoonProb url={entry.id} result={result} />
+                </div>
+              </div>
+            );
           default:
             return <></>
         }
