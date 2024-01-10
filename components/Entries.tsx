@@ -152,6 +152,7 @@ export default async function Entries({ limit }: EntriesProps) {
             return (
               <div className='border-b border-blue-900 mx-10 py-5'>
                 <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
+                <span>【{entry.title}】</span>
                 <div>
                   <TyphoonProb url={entry.id} result={result} />
                 </div>

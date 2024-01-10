@@ -7,7 +7,7 @@ export default async function Home() {
   return (
     <>
       <Header/>
-      <Entries limit={3}/>
+      <Entries/>
       <SignUp/>
       <LineBot/>
     </>
