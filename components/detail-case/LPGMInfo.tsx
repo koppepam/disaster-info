@@ -8,9 +8,9 @@ export default function LPGMInfo ({result, url}: {result: Root, url:string}) {
   const prefsArray = Array.isArray(pref) ? pref : [ pref ];
   const prefs = prefsArray.map((pref: Pref) => {
     const areasArray = Array.isArray(pref.Area) ? pref.Area : [ pref.Area ];
-    const areas = areasArray.map((area: Area) => {
+    const areas = areasArray.map((area) => {
       return (
-        <div className='mx-5 mt-2'>
+        <div className='detail mx-5 mt-2'>
           <span>{area.Name} : 階級{area.MaxLgInt ?? '震度情報なし'}</span>
         </div>
       )

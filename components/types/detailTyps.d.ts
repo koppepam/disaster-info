@@ -240,6 +240,7 @@ export type Area3 = {
   Code: string
   MaxInt: string
   City: City[]
+  MaxLgInt?: string
 }
 
 export type City = {

@@ -48,7 +48,7 @@ function Forecast ({result, url}: {result: Root, url:string}) {
 export default function TsunamiInfo ({result, url}: {result: Root, url:string}) {
   if (result.Report.Body.Tsunami.Observation && result.Report.Body.Tsunami.Forecast) {
     return (
-      <div className='mx-5 mt-2'>
+      <div className='detail mx-5 mt-2'>
         <Observation result={result} url={url}/>
         <div className='border-t border-red-500 flex flex-wrap'>
           <Forecast result={result} url={url}/>
@@ -57,13 +57,13 @@ export default function TsunamiInfo ({result, url}: {result: Root, url:string}) 
     )
   } else if (result.Report.Body.Tsunami.Observation) {
     return (
-      <div className='mx-5 mt-2'>
+      <div className='detail mx-5 mt-2'>
         <Observation result={result} url={url}/>
       </div>
     )
   } else if (result.Report.Body.Tsunami.Forecast) {
     return (
-      <div className='mx-5 mt-2 flex flex-wrap'>
+      <div className='detail mx-5 mt-2 flex flex-wrap'>
         <Forecast result={result} url={url}/>
       </div>
     )

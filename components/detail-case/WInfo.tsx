@@ -27,7 +27,7 @@ export default function WInfo ({result, url}: {result: Root, url:string}) {
     return areas;
   });
   return (
-    <div>
+    <div className='detail'>
       <div className='ml-5'>震源地 : {result.Report.Body.Earthquake.Hypocenter.Area.Name}</div>
       <div className='ml-5'>{centerArray.$.description}</div>
       <div className='ml-5'>{result.Report.Body.Earthquake['jmx_eb:Magnitude'].$.description}</div>

@@ -16,7 +16,7 @@ import TyphoonProb from './detail-case/TyphoonProb';
 
 export default async function Entries({ limit }: EntriesProps) {
   // const response = await fetch(`https://www.data.jma.go.jp/developer/xml/feed/eqvol_l.xml`);
-  const response = await fetch(`https://koppepam.github.io/disaster-info-data/eqvol.xml`);
+  const response = await fetch(`https://koppepam.github.io/disaster-info-data/eqvol.xml`); // テストデータ
   const xml = await response.text();
   const parser = new xml2js.Parser({ explicitArray: false });
   const { feed } = await parser.parseStringPromise(xml);
@@ -45,19 +45,15 @@ export default async function Entries({ limit }: EntriesProps) {
         const parser = new xml2js.Parser({ explicitArray: false });
         const result = await parser.parseStringPromise(xml);
 
-        const fs = await import('node:fs/promises');
-        await fs.writeFile(`tmp/detail-${i}.json`, JSON.stringify(result, null, 2));
-
         // console.dir(result, { depth: null});
-
 
         switch (entry.title) {
           case '震度速報':
             return (
               <div className='border-b border-blue-900 mx-10 py-5'>
                 <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
-                <span>{entry.content._}</span>
-                <div className='flex flex-row flex-wrap text-gray-700'>
+                <span className='title'>{entry.content._}</span>
+                <div className='content flex flex-row flex-wrap text-gray-700'>
                   <IntensityReport url={entry.id} result={result} />
                 </div>
               </div>
@@ -66,8 +62,8 @@ export default async function Entries({ limit }: EntriesProps) {
             return (
               <div className='border-b border-blue-900 mx-10 py-5'>
                 <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
-                <span>{entry.content._}</span>
-                <div className='text-gray-700'>
+                <span className='title'>{entry.content._}</span>
+                <div className='content text-gray-700'>
                   <EpicenterInfo url={entry.id} result={result} />
                 </div>
               </div>
@@ -76,8 +72,8 @@ export default async function Entries({ limit }: EntriesProps) {
             return (
               <div className='border-b border-blue-900 mx-10 py-5'>
                 <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
-                <span>{entry.content._}</span>
-                <div>
+                <span className='title'>{entry.content._}</span>
+                <div className='content'>
                   <WInfo url={entry.id} result={result} />
                 </div>
               </div>
@@ -86,8 +82,8 @@ export default async function Entries({ limit }: EntriesProps) {
             return (
               <div className='border-b border-blue-900 mx-10 py-5'>
                 <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
-                <span>{entry.content._}</span>
-                <div className='text-gray-700'>
+                <span className='title'>{entry.content._}</span>
+                <div className='content text-gray-700'>
                   <UpdateInfo url={entry.id} result={result} />
                 </div>
               </div>
@@ -96,11 +92,11 @@ export default async function Entries({ limit }: EntriesProps) {
             return (
               <div className='border-b border-blue-900 mx-10 py-5'>
                 <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
-                <span>{entry.content._}</span>
-                <div className='flex flex-row flex-wrap text-gray-700'>
+                <span className='title'>{entry.content._}</span>
+                <div className='content flex flex-row flex-wrap text-gray-700'>
                   <LPGMInfo url={entry.id} result={result} />
                 </div>
-                <span>{result.Report.Body.Comments.FreeFormComment}</span>
+                <span className='content'>{result.Report.Body.Comments.FreeFormComment}</span>
               </div>
             );
           case '津波警報・注意報・予報a':
@@ -109,7 +105,7 @@ export default async function Entries({ limit }: EntriesProps) {
               return (
                 <div className='border-b border-blue-900 mx-10 py-5'>
                   <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
-                  <span>{entry.content._ + '以下は継続中です。'}</span>
+                  <span className='title'>{entry.content._ + '以下は継続中です。'}</span>
                   <div className='flex flex-row flex-wrap text-gray-700'>
                     <TsunamiAlarm url={entry.id} result={result} />
                   </div>
@@ -120,30 +116,30 @@ export default async function Entries({ limit }: EntriesProps) {
             return (
               <div className='border-b border-blue-900 mx-10 py-5'>
                 <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
-                <span>{entry.content._}</span>
-                <div className='flex flex-row flex-wrap text-gray-700'>
+                <span className='title'>{entry.content._}</span>
+                <div className='content flex flex-row flex-wrap text-gray-700'>
                   <TsunamiAlarm url={entry.id} result={result} />
                 </div>
-                <span>{result.Report.Body.Comments.WarningComment.Text}</span>
+                <span className='content'>{result.Report.Body.Comments.WarningComment.Text}</span>
               </div>
             );
           case '津波情報a':
             return (
               <div className='border-b border-blue-900 mx-10 py-5'>
                 <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
-                <span>{entry.content._}</span>
-                <div className='flex flex-row flex-wrap text-gray-700'>
+                <span className='title'>{entry.content._}</span>
+                <div className='content flex flex-row flex-wrap text-gray-700'>
                   <TsunamiInfo url={entry.id} result={result} />
                 </div>
-                <span>{result.Report.Body.Comments.WarningComment.Text}</span>
+                <span className='content'>{result.Report.Body.Comments.WarningComment.Text}</span>
               </div>
             );
           case '沖合の津波観測に関する情報':
             return (
               <div className='border-b border-blue-900 mx-10 py-5'>
                 <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
-                <span>{entry.content._}</span>
-                <div>
+                <span className='title'>{entry.content._}</span>
+                <div className='content'>
                   <CoastInfo url={entry.id} result={result} />
                 </div>
               </div>
@@ -152,8 +148,8 @@ export default async function Entries({ limit }: EntriesProps) {
             return (
               <div className='border-b border-blue-900 mx-10 py-5'>
                 <FormattedTime time={entry.updated} format='YYYY/MM/DD HH:mm:ss' />
-                <span>【{entry.title}】</span>
-                <div>
+                <span className='title'>【{entry.title}】</span>
+                <div className='content text-gray-700'>
                   <TyphoonProb url={entry.id} result={result} />
                 </div>
               </div>
