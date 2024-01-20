@@ -33,7 +33,7 @@ export default async function Entries({ limit }: EntriesProps) {
 
         if (!response.ok) {
           return (
-            <ul>
+            <ul className='border-b border-blue-900 mx-10 py-5'>
               <li>{response.status}</li>
               <li>{response.statusText}</li>
               <li>{entry.id}</li>
