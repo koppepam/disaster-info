@@ -1,14 +1,14 @@
-import Entries from "@/components/Entries";
 import Header from "@/components/Header";
-import SignUp from "@/components/SignUp";
+import Login from "@/components/Login";
+import Entries from "@/components/Entries";
 import LineBot from "@/components/LineBot";
 
 export default async function Home() {
   return (
     <>
       <Header/>
+      <Login/>
       <Entries/>
-      <SignUp/>
       <LineBot/>
     </>
   )

@@ -10,11 +10,15 @@
   },
   "dependencies": {
     "@preline/accordion": "^2.0.2",
+    "add": "^2.0.6",
     "dayjs": "^1.11.10",
     "next": "14.0.4",
+    "next-auth": "^4.24.5",
+    "or": "^0.2.0",
     "react": "^18",
     "react-dom": "^18",
-    "xml2js": "^0.6.2"
+    "xml2js": "^0.6.2",
+    "yarn": "^1.22.21"
   },
   "devDependencies": {
     "@tailwindcss/line-clamp": "^0.4.4",

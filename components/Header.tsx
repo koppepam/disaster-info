@@ -6,7 +6,7 @@ export default function Header() {
         <li className="px-4">全国</li>
         <li className="px-4">選択地域</li>
         <li className="px-4">気象警報</li>
-        <li className="px-4">LINE bot</li>
+        <li className="px-4">LINE ログイン</li>
       </ul>
     </div>
   );
