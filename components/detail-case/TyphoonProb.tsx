@@ -5,7 +5,6 @@ import type { Root, Item, Area, MeteorologicalInfo } from '@/components/types/de
 export default async function TyphoonProb ({result, url}: {result: Root, url:string}) {
   const MeteoInfos: MeteorologicalInfo = Array.isArray(result.Report.Body.MeteorologicalInfos.MeteorologicalInfo) ? result.Report.Body.MeteorologicalInfos.MeteorologicalInfo[1] : result.Report.Body.MeteorologicalInfos;
 
-  // prefecture ごとにまとめる
   const itemsArray = Array.isArray(MeteoInfos.Item) ? MeteoInfos.Item : [ MeteoInfos.Item ];
   
   // 全国の確率が 0 のとき
@@ -19,7 +18,7 @@ export default async function TyphoonProb ({result, url}: {result: Root, url:str
       </div>
     );
   }
-
+  // prefecture ごとにまとめる
   const InfoitemsMap = itemsArray.reduce((map, item, index ) => {
     const key = item.Area.Prefecture;
     const group = map.get(key);

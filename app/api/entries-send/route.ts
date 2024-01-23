@@ -22,5 +22,5 @@ export async function GET(request: NextRequest) {
     const result = await parser.parseStringPromise(xml);
     return result;
   }));
-  return NextResponse.json({feed, content});
+  return NextResponse.json({content});
 }
