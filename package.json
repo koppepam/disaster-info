@@ -12,6 +12,7 @@
     "@preline/accordion": "^2.0.2",
     "add": "^2.0.6",
     "dayjs": "^1.11.10",
+    "flowbite": "^2.2.1",
     "next": "14.0.4",
     "next-auth": "^4.24.5",
     "or": "^0.2.0",

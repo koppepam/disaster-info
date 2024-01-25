@@ -4,6 +4,7 @@ import { authOptions } from "./api/auth/[...nextauth]/route";
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import 'flowbite';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,10 +21,14 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
   return (
     <html lang="ja">
+      <head>
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+      </head>
       <body className={inter.className}>
         <NextAuthProvider session={session}>
           {children}
         </NextAuthProvider>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
       </body>
     </html>
   );

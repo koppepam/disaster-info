@@ -9,3 +9,10 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  userId         Int            @id
+  username       String         @unique @db.VarChar(255)
+// isfriend LINE 友達追加してますか
+  @@map(name: "users")
+}
