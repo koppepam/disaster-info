@@ -5,11 +5,10 @@ import LineBot from "@/components/LineBot";
 
 export default function Home() {
   return (
-    <>
+    <div className="">
       <Header/>
       <Login/>
       <Entries/>
-      <LineBot/>
-    </>
+    </div>
   )
 }

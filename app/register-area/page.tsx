@@ -90,22 +90,25 @@ export default function Page() {
     );
   });
 
-
+// 選択済みの地域を表示する？
   return (
-    <form action="/" method="post">
+    <form action="/" method="post" className='p-10'>
       <h3>災害情報を受け取る地域を選択してください</h3>
-      <div>
+      <div className='m-5'>
         <h5>地震</h5>
         {earthquakeGroups}
       </div>
-      <div>
+      <div className='m-5'>
         <h5>津波</h5>
         {tsunamiGroups}
       </div>
-      <div>
+      <div className='m-5'>
         <h5>台風</h5>
         {tyhoonGroups}
       </div>
+      <button type="submit" className='m-5 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'>
+        選択した地域を登録する
+      </button>
     </form>
   );
 }
