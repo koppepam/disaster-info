@@ -11,8 +11,21 @@ datasource db {
 }
 
 model User {
-  userId         Int            @id
-  username       String         @unique @db.VarChar(255)
-// isfriend LINE 友達追加してますか
+  userId   String @id @db.VarChar(255)
+  username String @unique @db.VarChar(255)
+  areas    Area[]
+
+  // isfriend LINE友達追加してますか
   @@map(name: "users")
+}
+
+model Area {
+  userId   String @id @db.VarChar(255)
+  areaCode Int
+  areaName String @db.VarChar(255)
+  disaster String @db.VarChar(255)
+  user     User   @relation(fields: [userId], references: [userId], onDelete: Cascade)
+
+  @@index(fields: [areaCode])
+  @@map(name: "models")
 }

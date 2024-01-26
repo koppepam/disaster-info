@@ -1,6 +1,7 @@
 import NextAuth, { AuthOptions } from 'next-auth';
 import LineProvider from 'next-auth/providers/line';
 import { DefaultSession } from 'next-auth';
+import { PrismaClient } from '@prisma/client';
 // import LINE from 'next-auth/providers/line';
 // import type { OAuthConfig, OAuthUserConfig } from 'next-auth/providers/oauth';
 
@@ -35,6 +36,20 @@ const options: AuthOptions = {
       if (user) token.uid = user.id;
       return token;
     },
+    signIn: async ({ user }) => {
+      console.log(user.id, user.name);
+      const prisma = new PrismaClient({ log: [ 'query' ] });
+      const data = {
+        userId: user.id,
+        username: user.name || '名無し',
+      }
+      await prisma.user.upsert({
+        where: { userId: user.id },
+        create: data,
+        update: data
+      });
+      return true;
+    }
   },
   session: {
     strategy: 'jwt',

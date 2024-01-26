@@ -5,7 +5,7 @@ type Group = {
   group: string[][];
 };
 
-export default function Page() {
+export default async function Page() {
   const earthquakeArea = fs.readFileSync('./public/data/earthquake-area.json', 'utf-8');
   const earthquakeAreaJson: Group[] = JSON.parse(earthquakeArea);
   const earthquakeGroups = earthquakeAreaJson.map((group, i) => {
@@ -89,6 +89,13 @@ export default function Page() {
       </>
     );
   });
+
+
+  // const res = await fetch('./api/post', {
+  //   method: 'POST',
+  //   body: JSON.stringify({earthquakeGroups, tsunamiGroups, tyhoonGroups}),
+  // });
+  // setPostedData(await res.json());
 
 // 選択済みの地域を表示する？
   return (
