@@ -3,16 +3,11 @@
 import { FormEvent } from 'react';
 import RegisterServer from '@/components/RegisterServer';
 
-export default async function Page() {
+export default function Page() {
   const registerData = (event: FormEvent) => {
     event.preventDefault();
-
     const form = event.target;
     const formData = new FormData(form as HTMLFormElement);
-    console.log(formData);
-    for (const pair of formData.entries()) {
-      console.log(`${pair[0]}, ${pair[1]}`);
-    }
     fetch('/api/register', {
       method: 'POST',
       headers: {
@@ -23,18 +18,23 @@ export default async function Page() {
         tsunamiAreas: formData.getAll('tsunamiAreas'),
         tyhoonAreas: formData.getAll('tyhoonAreas'),
       }),
-    })
+    }).then((response) => {
+      // reponse が 200 なら / にリダイレクト
+      if (response.status === 200) {
+        location.href = '/';
+      } else if (response.status === 401) {
+        location.href = '/';
+      }
+    });
   };
-
-
-// 選択済みの地域を表示する？
   return (
     <form onSubmit={registerData} className='p-10'>
       <h3>災害情報を受け取る地域を選択してください</h3>
       <RegisterServer/>
       <button type="submit" className='m-5 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'>
-        選択した地域を登録する
+      選択した地域を登録する
       </button>
     </form>
   );
+/* ログイン済みならフォームを表示、未ログインならログインボタンを表示 */
 }

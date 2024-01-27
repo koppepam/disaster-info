@@ -2,8 +2,6 @@ import NextAuth, { AuthOptions } from 'next-auth';
 import LineProvider from 'next-auth/providers/line';
 import { DefaultSession } from 'next-auth';
 import { PrismaClient } from '@prisma/client';
-// import LINE from 'next-auth/providers/line';
-// import type { OAuthConfig, OAuthUserConfig } from 'next-auth/providers/oauth';
 
 declare module "next-auth" {
   interface Session extends DefaultSession {
@@ -37,7 +35,6 @@ const options: AuthOptions = {
       return token;
     },
     signIn: async ({ user }) => {
-      console.log(user.id, user.name);
       const prisma = new PrismaClient({ log: [ 'query' ] });
       const data = {
         userId: user.id,

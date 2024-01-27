@@ -20,12 +20,14 @@ model User {
 }
 
 model Area {
-  userId   String @id @db.VarChar(255)
-  areaCode Int
+  areaId   Int    @id @default(autoincrement())
+  userId   String @db.VarChar(255)
+  areaCode String @db.VarChar(255)
   areaName String @db.VarChar(255)
   disaster String @db.VarChar(255)
   user     User   @relation(fields: [userId], references: [userId], onDelete: Cascade)
 
+  @@unique(fields: [userId, areaCode, disaster], name: "registeredArea")
   @@index(fields: [areaCode])
   @@map(name: "models")
 }

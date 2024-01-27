@@ -20,11 +20,11 @@ export default async function RootLayout({
 }) {
   const session = await getServerSession(authOptions);
   return (
-    <html lang="ja">
+    <html lang="ja" suppressHydrationWarning={true}>
       <head>
       <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
       </head>
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning={true}>
         <NextAuthProvider session={session}>
           {children}
         </NextAuthProvider>
