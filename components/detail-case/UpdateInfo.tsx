@@ -9,7 +9,7 @@ export default function UpdateInfo ({result, url}: {result: Root, url:string}) {
   return (
     <div className='detail'>
       <div className='mx-5 mt-2 flex'>
-        <div>震源地 : {result.Report.Body.Earthquake.Hypocenter.Area.Name}</div>
+        <div>震源地 : {result.Report.Body.Earthquake.Hypocenter.Area.Name}</div><br />
         <div className='ml-5'>{centerArray.$.description}</div>
       </div>
       <div className='ml-5'>{result.Report.Body.Earthquake['jmx_eb:Magnitude'].$.description}</div>
