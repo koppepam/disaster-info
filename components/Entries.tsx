@@ -27,7 +27,7 @@ export default async function Entries({ limit }: EntriesProps) {
     entries.length = limit;
   }
   return ( 
-    <main className='flex flex-row flex-wrap'>
+    <main className='flex flex-row flex-wrap w-11/12 mr-auto ml-auto'>
       {entries.map(async(entry, i) => {
         const response = await fetch(entry.id, {cache: "no-store" }); // 詳細XML
 

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import LineBot from "./LineBot";
+import Login from "./Login";
 import { useSession } from "next-auth/react";
 
 export default function Header() {
@@ -14,12 +15,11 @@ export default function Header() {
           <h1 className="text-white text-4xl font-bold ml-4">災害情報</h1>
           <ul className="text-white flex text-right divide-x divide-white m-5">
             <li className="px-4">全国</li>
-            <li className="px-4">選択地域</li>
-            <li className="px-4">気象警報</li>
-            <li className="px-4">LINE ログイン</li>
+            <li className="px-4">登録地域</li>
+            <li className="px-4"><Login/></li>
           </ul>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center ml-auto mr-auto w-7/12">
           <a href="/register-area" className="my-5 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
             災害情報を受け取る地域を登録する
           </a>
@@ -34,9 +34,7 @@ export default function Header() {
         <h1 className="text-white text-4xl font-bold ml-4">災害情報</h1>
         <ul className="text-white flex text-right divide-x divide-white m-5">
           <li className="px-4">全国</li>
-          <li className="px-4">選択地域</li>
-          <li className="px-4">気象警報</li>
-          <li className="px-4">LINE ログイン</li>
+          <li className="px-4"><Login/></li>
         </ul>
       </div>
       <div className="flex items-center">
