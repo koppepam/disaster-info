@@ -47,11 +47,11 @@ async function checkAreaName ({ key, value }: { key: string, value: string }) {
   let url = '';
 
   if (key === 'earthquakeAreas') {
-    url = `http://localhost:3000/data/earthquake-area.json`;
+    url = `https://disaster-info-6cpa.onrender.com/data/earthquake-area.json`;
   } else if (key === 'tsunamiAreas') {
-    url = `http://localhost:3000/data/tsunami-area.json`;
+    url = `https://disaster-info-6cpa.onrender.com/data/tsunami-area.json`;
   } else if (key === 'tyhoonAreas') {
-    url = `http://localhost:3000/data/tyhoon-area.json`;
+    url = `https://disaster-info-6cpa.onrender.com/data/tyhoon-area.json`;
   }
 
   if (url) {
