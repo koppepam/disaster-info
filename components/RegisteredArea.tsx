@@ -1,4 +1,4 @@
-type Data = {
+/* type Data = {
   areaId: number;
   userId: string;
   areaCode: string;
@@ -31,4 +31,4 @@ export default async function RegisteredArea () {
         </ul>
       </div>
     )
-}
+} */
