@@ -23,6 +23,7 @@ export default async function RootLayout({
     <html lang="ja" suppressHydrationWarning={true}>
       <head>
       <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"></link>
       </head>
       <body className={inter.className} suppressHydrationWarning={true}>
         <NextAuthProvider session={session}>

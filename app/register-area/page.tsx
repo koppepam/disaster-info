@@ -1,7 +1,6 @@
 'use client';
 
 import { FormEvent } from 'react';
-import { Suspense } from 'react';
 import RegisterServer from '@/components/RegisterServer';
 
 export default function Page() {
