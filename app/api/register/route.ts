@@ -1,7 +1,7 @@
 // 地域の登録フォームの内容を受け取る
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from '@prisma/client';
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "../auth/[...nextauth]/options";
 import { getServerSession } from "next-auth/next";
 
 type Group = {
