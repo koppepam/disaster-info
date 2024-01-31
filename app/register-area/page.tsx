@@ -1,6 +1,7 @@
 'use client';
 
 import { FormEvent } from 'react';
+import { Suspense } from 'react';
 import RegisterServer from '@/components/RegisterServer';
 
 export default function Page() {
@@ -23,6 +24,7 @@ export default function Page() {
       if (response.status === 200) {
         location.href = '/';
       } else if (response.status === 401) {
+        alert('登録にはログインが必要です。');
         location.href = '/';
       }
     });
@@ -36,5 +38,4 @@ export default function Page() {
       </button>
     </form>
   );
-/* ログイン済みならフォームを表示、未ログインならログインボタンを表示 */
 }

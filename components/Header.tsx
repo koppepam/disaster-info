@@ -17,8 +17,8 @@ export default function Header() {
             <li className="px-4"><Login/></li>
           </ul>
         </div>
-        <div className="flex items-center ml-auto mr-auto w-7/12">
-          <a href="/register-area" className="my-5 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+        <div className="xl:flex items-center xl:justify-center xl:mt-0 mt-10 xl:h-20 h-40 xl:ml-auto ml-10 xl:mr-auto">
+          <a href="/register-area" className="md:my-5 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
             災害情報を受け取る地域を登録する
           </a>
           <LineBot />

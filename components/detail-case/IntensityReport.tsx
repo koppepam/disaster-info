@@ -8,19 +8,11 @@ export default function IntensityReport ({result, url}: {result: Root, url:strin
     return <>取消された情報 : {url}</>
   } 
   const pref = result.Report.Body.Intensity.Observation.Pref;
-  /* 震度降順にしたかった result.Report.Head の方なら震度でまとめてある
-  const order = ['7', '6+', '6-', '5+', '5-', '4', '3', '2', '1'];
-  const maxIntSort = Array.isArray(pref.Area.MaxInt) ? pref.Area.MaxInt : [ pref.Area.MaxInt ];
-  maxIntSort.sort((a,b) => {
-    return order.indexOf(a.maxInt) - order.indexOf(b.maxInt);
-  });
-  console.log(maxIntSort);
-  */
   const prefsArray = Array.isArray(pref) ? pref : [ pref ];
   const prefs = prefsArray.map((pref: Pref) => {
     const areasArray = Array.isArray(pref.Area) ? pref.Area : [ pref.Area ];
-    const areas = areasArray.map((area) => {
-      return <div className='detail mx-5 mt-2'>{area.Name} : 震度 {area.MaxInt ?? '震度情報なし'}</div>
+    const areas = areasArray.map((area, i) => {
+      return <div key={`Intensity-${i}`} className='detail mx-5 mt-2'>{area.Name} : 震度 {area.MaxInt ?? '震度情報なし'}</div>
     });
     return areas;
   });

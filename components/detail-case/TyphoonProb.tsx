@@ -32,16 +32,16 @@ export default async function TyphoonProb ({result, url}: {result: Root, url:str
   //   [ '神奈川県', [{}, {}, {}, {} ] ],
   //   [ '千葉県', [{}, {}, {}, {} ] ],
   // ].map(([prefName, items]) => {
-  const items = (Array.from(InfoitemsMap) as [string, Item[]][]).map(([prefName, items]) => {
+  const items = (Array.from(InfoitemsMap) as [string, Item[]][]).map(([prefName, items], i) => {
     const filteredItems = items.filter((item: Item) => {
       const Probability = item.Kind.Property.FiftyKtWindProbabilityPart.FiftyKtWindProbability._;
       return parseInt(Probability, 10) !== 0;
     });
 
-    const notZeroItemsArray /* ↑ の items(配列) のマップ */ = filteredItems.map((item: Item) => {
+    const notZeroItemsArray /* ↑ の items(配列) のマップ */ = filteredItems.map((item: Item, i) => {
       const Probability = item.Kind.Property.FiftyKtWindProbabilityPart.FiftyKtWindProbability._;
       return (
-        <div className='detail mx-2'>
+        <div key={`Typhoonareas-${i}`} className='detail mx-2'>
           <span>{item.Area.Name} : </span>
           {`${Probability}%`}
         </div>
@@ -49,7 +49,7 @@ export default async function TyphoonProb ({result, url}: {result: Root, url:str
     });
     if (notZeroItemsArray.length) {
       return (
-        <div className='detail mx-5 mt-2 flex flex-row flex-wrap'>
+        <div key={`Typhoon-${i}`} className='detail mx-5 mt-2 flex flex-row flex-wrap'>
           <span>{prefName} : </span>
           {notZeroItemsArray}
         </div>

@@ -15,15 +15,15 @@ export default function WInfo ({result, url}: {result: Root, url:string}) {
     const areasArray = Array.isArray(pref.Area) ? pref.Area : [ pref.Area ];
     const areas = areasArray.map((area: Area3) => {
       const _cities = Array.isArray(area.City) ? area.City : [ area.City ];
-      cities = _cities.map((city : City) => {
-        return <div className='mx-5 mt-2'>{city.Name} : 震度 {area.MaxInt ?? '震度情報なし'}</div>
+      cities = _cities.map((city : City, i) => {
+        return <div key={`Winfo-${i}`} className='mx-5 mt-2'>{city.Name} : 震度 {area.MaxInt ?? '震度情報なし'}</div>
       });
       return cities;
     });
     return areas;
   });
   return (
-    <div className='detail'>
+    <div>
       <div className='ml-5'>震源地 : {result.Report.Body.Earthquake.Hypocenter.Area.Name}</div>
       <div className='ml-5'>{centerArray.$.description}</div>
       <div className='ml-5'>{result.Report.Body.Earthquake['jmx_eb:Magnitude'].$.description}</div>

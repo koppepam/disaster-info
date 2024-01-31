@@ -34,9 +34,9 @@ function Observation ({result, url}: {result: Root, url:string}) {
 function Forecast ({result, url}: {result: Root, url:string}) {
   const FoItem = result.Report.Body.Tsunami.Forecast.Item;
   const FoItemsArray = Array.isArray(FoItem) ? FoItem : [ FoItem ];
-  const FoItems = FoItemsArray.map((item: Item) => {
+  const FoItems = FoItemsArray.map((item: Item, i) => {
     return (
-      <div>
+      <div key={`TInfo-${i}`}>
         <span>【{item.Area.Name}】 {item.Category?.Kind.Name ?? ''}</span>
         {item.MaxHeight && ` : 津波の高さ${item.MaxHeight['jmx_eb:TsunamiHeight'].$.description}`}
       </div>
