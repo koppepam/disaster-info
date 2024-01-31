@@ -4,9 +4,9 @@ import Entries from "@/components/Entries";
 
 export default function Home() {
   return (
-    <div className="">
+    <>
       <Header/>
       <Entries/>
-    </div>
-  )
+    </>
+  );
 }

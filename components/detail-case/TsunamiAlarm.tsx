@@ -9,7 +9,7 @@ export default function TsunamiAlarm ({result, url}: {result: Root, url:string})
   const items = itemsArray.map((item: Item) => {
     return (
       <div className='detail mx-5 mt-2'>
-        <span>{item.Area.Name} : {item.Category?.Kind.Name ?? ''}</span>
+        <span>【{item.Area.Name}】 {item.Category?.Kind.Name ?? ''}</span>
         {item.MaxHeight && ` : 津波の高さ${item.MaxHeight['jmx_eb:TsunamiHeight'].$.description}`}
       </div>
     )

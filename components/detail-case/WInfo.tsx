@@ -16,11 +16,7 @@ export default function WInfo ({result, url}: {result: Root, url:string}) {
     const areas = areasArray.map((area: Area3) => {
       const _cities = Array.isArray(area.City) ? area.City : [ area.City ];
       cities = _cities.map((city : City) => {
-        return (
-          <div className='mx-5 mt-2'>
-            <span>{city.Name} : 震度 {area.MaxInt ?? '震度情報なし'}</span>
-          </div>
-        )
+        return <div className='mx-5 mt-2'>{city.Name} : 震度 {area.MaxInt ?? '震度情報なし'}</div>
       });
       return cities;
     });

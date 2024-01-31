@@ -36,8 +36,8 @@ function Forecast ({result, url}: {result: Root, url:string}) {
   const FoItemsArray = Array.isArray(FoItem) ? FoItem : [ FoItem ];
   const FoItems = FoItemsArray.map((item: Item) => {
     return (
-      <div className='mx-5 mt-2'>
-        <span>{item.Area.Name} : {item.Category?.Kind.Name ?? ''}</span>
+      <div>
+        <span>【{item.Area.Name}】 {item.Category?.Kind.Name ?? ''}</span>
         {item.MaxHeight && ` : 津波の高さ${item.MaxHeight['jmx_eb:TsunamiHeight'].$.description}`}
       </div>
     );
