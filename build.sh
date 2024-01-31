@@ -7,6 +7,8 @@ chmod +x cloud_sql_proxy
 # プロキシサーバを起動(起動後別のシェルでMySQLサーバにプロキシサーバ経由で接続する)
 ./cloud_sql_proxy 'meta-leaf-412610:asia-northeast1:disaster-info-db?port=$PORT' --credentials-file='$GOOGLE_APPLICATION_CREDENTIALS'
 
+yarn install
+
 npx prisma db push
 
 yarn build
