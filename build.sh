@@ -10,5 +10,3 @@ chmod +x cloud_sql_proxy
 npx prisma db push
 
 yarn build
-
-yarn start
