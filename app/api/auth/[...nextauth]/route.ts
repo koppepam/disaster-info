@@ -18,7 +18,7 @@ declare module "next-auth/jwt" {
   }
 }
 
-const options: AuthOptions = {
+const authOptions: AuthOptions = {
   providers: [
     LineProvider({
       clientId: process.env.LINE_CLIENT_ID!,
@@ -53,6 +53,6 @@ const options: AuthOptions = {
   }
 };
 
-const handler = NextAuth(options);
+const handler = NextAuth(authOptions);
 
-export { handler as GET, handler as POST, options as authOptions };
+export { handler as GET, handler as POST, authOptions };
