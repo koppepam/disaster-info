@@ -7,7 +7,7 @@ type Group = {
 
 
 export default async function RegisterServer() {
-  const earthquakeresponse = await fetch('https://disaster-info-6cpa.onrender.com/data/earthquake-area.json');
+  const earthquakeresponse = await fetch('/data/earthquake-area.json');
   const earthquakeAreaJson: Group[] = await earthquakeresponse.json();
   const earthquakeGroups = earthquakeAreaJson.map((group, i) => {
     const earthquakeAreas = group.group.map((value, i) => {
@@ -35,7 +35,7 @@ export default async function RegisterServer() {
     );
   });
 
-  const tsunamiresponse = await fetch('https://disaster-info-6cpa.onrender.com/data/tsunami-area.json');
+  const tsunamiresponse = await fetch('/data/tsunami-area.json');
   const tsunamiAreaJson: Group[] = await tsunamiresponse.json();
   const tsunamiGroups = tsunamiAreaJson.map((group, i) => {
     const tsunamiAreas = group.group.map((value, i) => {
@@ -63,7 +63,7 @@ export default async function RegisterServer() {
     );
   });
 
-  const tyhoonresponse = await fetch('https://disaster-info-6cpa.onrender.com/data/tyhoon-area.json');
+  const tyhoonresponse = await fetch('/data/tyhoon-area.json');
   const tyhoonAreaJson: Group[] = await tyhoonresponse.json();
   const tyhoonGroups = tyhoonAreaJson.map((group, i) => {
     const tyhoonAreas = group.group.map((value, i) => {

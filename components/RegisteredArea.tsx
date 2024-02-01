@@ -7,7 +7,7 @@
 };
 
 export default async function RegisteredArea () {
-  const response = await fetch('https://disaster-info-6cpa.onrender.com/api/registered-areas'); 
+  const response = await fetch('/api/registered-areas'); 
     const registeredData: Data[] = await response.json();
   
     const disasterMap = new Map(
