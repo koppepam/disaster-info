@@ -16,7 +16,11 @@ import TyphoonProb from './detail-case/TyphoonProb';
 // ({ feedtype, limit }: EntriesProps)
 
 export default async function Entries({ limit }: EntriesProps) {
-  const response = await fetch(`https://www.data.jma.go.jp/developer/xml/feed/eqvol_l.xml`);
+  const response = await fetch(`https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml`);
+  try {await fetch(`https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml`)}
+  catch (error) {
+    console.error('Error:', error);
+  }
   // const response = await fetch(`https://koppepam.github.io/disaster-info-data/eqvol.xml`); // テストデータ
   const xml = await response.text();
   const parser = new xml2js.Parser({ explicitArray: false });
