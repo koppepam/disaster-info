@@ -18,12 +18,12 @@ import TyphoonProb from './detail-case/TyphoonProb';
 export default async function Entries({ limit }: EntriesProps) {
   console.log('気象庁防災情報 XML 取得...');
 
-  try {await fetch(`https://www.data.jma.go.jp/developer/xml/feed/eqvol_l.xml`)}
+  try {await fetch(`https://www.data.jma.go.jp/developer/xml/feed/eqvol_l.xml`, { cache: "no-store" })}
   catch (error) {
-    console.error('Fetch Error:', error);
+    console.error(`Fetch Error https://www.data.jma.go.jp/developer/xml/feed/eqvol_l.xml`, error);
   }
 
-  const response = await fetch(`https://www.data.jma.go.jp/developer/xml/feed/eqvol_l.xml`);
+  const response = await fetch(`https://www.data.jma.go.jp/developer/xml/feed/eqvol_l.xml`, { cache: "no-store" });
   // const response = await fetch(`https://koppepam.github.io/disaster-info-data/eqvol.xml`); // テストデータ
   const xml = await response.text();
   const parser = new xml2js.Parser({ explicitArray: false });
@@ -36,7 +36,11 @@ export default async function Entries({ limit }: EntriesProps) {
   return ( 
     <main className='flex flex-row flex-wrap justify-center mr-auto ml-auto'>
       {entries.map(async(entry, i) => {
-        const response = await fetch(entry.id, {cache: "no-store" }); // 詳細XML
+        try {await fetch(entry.id, { cache: "no-store" })}
+        catch (error) {
+          console.error(`Fetch Error (${entry.id})`, error);
+        }
+        const response = await fetch(entry.id, { cache: "no-store" }); // 詳細XML
 
         if (!response.ok) {
           return (
