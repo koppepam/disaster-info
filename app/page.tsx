@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Header/>
-      <Entries/>
+      <Entries limit={30}/>
     </>
   );
 }
