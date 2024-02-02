@@ -9,7 +9,7 @@ export default function Header() {
   const { data: session } = useSession();
 
   function deleteRequest() {
-    fetch(`${process.env.URL}/api/delete`, {
+    fetch(`${process.env.NEXT_PUBLIC_URL}/api/delete`, {
       method: 'DELETE',
     }).then((response) => {
       // reponse が 200 なら / にリダイレクト
