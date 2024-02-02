@@ -8,7 +8,7 @@ export default function Page() {
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form as HTMLFormElement);
-    fetch('/api/register', {
+    fetch(`${process.env.URL}/api/register`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',

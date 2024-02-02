@@ -47,11 +47,11 @@ async function checkAreaName ({ key, value }: { key: string, value: string }) {
   let url = '';
 
   if (key === 'earthquakeAreas') {
-    url = `/data/earthquake-area.json`;
+    url = `${process.env.URL}/data/earthquake-area.json`;
   } else if (key === 'tsunamiAreas') {
-    url = `/data/tsunami-area.json`;
+    url = `${process.env.URL}/data/tsunami-area.json`;
   } else if (key === 'tyhoonAreas') {
-    url = `/data/tyhoon-area.json`;
+    url = `${process.env.URL}/data/tyhoon-area.json`;
   }
 
   if (url) {
