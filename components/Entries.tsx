@@ -23,7 +23,7 @@ export default async function Entries({ limit }: EntriesProps) {
   const { feed } = await parser.parseStringPromise(xml);
 
   let entries: Entry[] = feed.entry; 
-  entries = entries.filter((entry) => {entry.title !== '降灰予報（定時）'})
+  entries = entries.filter((entry) => entry.title !== '降灰予報（定時）')
 
   // if(limit){
   //   entries = entries.slice(0, limit);
