@@ -22,9 +22,11 @@ export default async function Entries({ limit }: EntriesProps) {
   const parser = new xml2js.Parser({ explicitArray: false });
   const { feed } = await parser.parseStringPromise(xml);
 
-  const entries: Entry[] = feed.entry; 
+  let entries: Entry[] = feed.entry; 
+  entries = entries.filter((entry) => {entry.title !== '降灰予報（定時）'})
+
   if(limit){
-    entries.length = limit;
+    entries = entries.slice(0, limit);
   }
   return ( 
     <main className='flex flex-row flex-wrap justify-center mr-auto ml-auto'>
