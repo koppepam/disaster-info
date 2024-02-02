@@ -16,6 +16,8 @@ import TyphoonProb from './detail-case/TyphoonProb';
 // ({ feedtype, limit }: EntriesProps)
 
 export default async function Entries({ limit }: EntriesProps) {
+  console.log('気象庁防災情報 XML 取得...');
+
   try {await fetch(`https://www.data.jma.go.jp/developer/xml/feed/eqvol_l.xml`)}
   catch (error) {
     console.error('Fetch Error:', error);
