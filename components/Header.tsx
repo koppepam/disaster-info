@@ -56,7 +56,7 @@ export default function Header() {
         </ul>
       </div>
       <div className="items-center ml-auto mr-auto w-5/12">
-        <LineBot/>
+        LINE でログインすると、災害情報を受け取る地域を登録できます
       </div>
     </>
   );
