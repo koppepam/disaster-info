@@ -10,7 +10,13 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: '災害情報お知らせアプリ',
-  description: '気象庁のAPIを利用して、災害情報をお知らせするアプリです。'
+  description: '気象庁のAPIを利用して、災害情報をお知らせするアプリです。',
+  openGraph: {
+    title: '災害情報お知らせアプリ',
+    description: '気象庁のAPIを利用して、災害情報をお知らせするアプリです。',
+    siteName: '災害情報お知らせアプリ',
+    type: 'website'
+  }
 }
 
 export default async function RootLayout({
