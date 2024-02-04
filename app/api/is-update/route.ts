@@ -7,5 +7,5 @@ export async function GET(request: NextRequest) {
   const parser = new xml2js.Parser({ explicitArray: false });
   const { feed } = await parser.parseStringPromise(xml);
 
-  return NextResponse.json({feed});
+  return NextResponse.json({feed, acessTime: new Date().toISOString()});
 }
