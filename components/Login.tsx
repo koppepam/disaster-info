@@ -15,8 +15,8 @@ export default function Login() {
   }
   return (
     <>
-      {/* LINE でログインする<br /> */}
-      <button onClick={() => signIn()}>LINE でログイン</button>
+      {/* <button onClick={() => signIn()}>LINE でログイン</button> */}
+      <button onClick={() => alert('データベースの無料期間が終了したため、データベースが必要な機能を停止しました。')}>LINE でログイン</button>
     </>
   );
 }
