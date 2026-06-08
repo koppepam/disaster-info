@@ -1,4 +1,4 @@
-yarn install
+npm install
 
 # cloud_sql_proxyをダウンロード
 curl -o cloud-sql-proxy https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.6.1/cloud-sql-proxy.linux.amd64
@@ -11,4 +11,4 @@ chmod +x cloud-sql-proxy
 
 npx prisma db push
 
-yarn build
+npm run build
