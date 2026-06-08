@@ -15,6 +15,36 @@ import TyphoonProb from './detail-case/TyphoonProb';
 
 // ({ feedtype, limit }: EntriesProps)
 
+async function fetchEntryDetail(entry: Entry) {
+  try {
+    const response = await fetch(entry.id, { cache: "no-store" }); // 詳細XML
+
+    if (!response.ok) {
+      return {
+        status: response.status,
+        statusText: response.statusText,
+        entry
+      };
+    }
+
+    const xml = await response.text();
+    const parser = new xml2js.Parser({ explicitArray: false });
+    const result = await parser.parseStringPromise(xml);
+    
+    return {
+      status: 200,
+      entry,
+      result
+    };
+  } catch (error) {
+    return {
+      status: 500,
+      error: String(error),
+      entry
+    };
+  }
+}
+
 export default async function Entries({ limit }: EntriesProps) {
   const response = await fetch(`https://www.data.jma.go.jp/developer/xml/feed/eqvol_l.xml`, { cache: "no-store" });
   // const response = await fetch(`https://koppepam.github.io/disaster-info-data/eqvol.xml`); // テストデータ
@@ -28,24 +58,24 @@ export default async function Entries({ limit }: EntriesProps) {
   // if(limit){
   //   entries = entries.slice(0, limit);
   // }
+
+  // 全てのエントリの詳細をまとめて取得
+  const entriesWithDetails = await Promise.all(entries.map(fetchEntryDetail));
+
   return ( 
     <main className='flex flex-row flex-wrap justify-center mr-auto ml-auto'>
-      {entries.map(async(entry, i) => {
-        const response = await fetch(entry.id, { cache: "no-store" }); // 詳細XML
+      {entriesWithDetails.map((data, i) => {
+        const { entry, status, result, statusText, error } = data;
 
-        if (!response.ok) {
+        if (status !== 200) {
           return (
             <ul key={i} className='border-b border-blue-900 mx-10 py-5'>
-              <li key={i}>{response.status}</li>
-              <li key={i}>{response.statusText}</li>
+              <li key={i}>{status}</li>
+              <li key={i}>{statusText || error}</li>
               <li key={i}>{entry.id}</li>
             </ul>
           );
         }
-
-        const xml = await response.text();
-        const parser = new xml2js.Parser({ explicitArray: false });
-        const result = await parser.parseStringPromise(xml);
 
         // console.dir(result, { depth: null});
 

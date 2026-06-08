@@ -1,3 +1,5 @@
+'use client';
+
 import * as dayjs from 'dayjs';
 // import isLeapYear from 'dayjs/plugin/isLeapYear';
 import timezone from "dayjs/plugin/timezone";
