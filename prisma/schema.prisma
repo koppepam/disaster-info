@@ -6,9 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
-}
+  provider = "mysql"  url      = env(\"DATABASE_URL\")}
 
 model User {
   userId   String @id @db.VarChar(255)
