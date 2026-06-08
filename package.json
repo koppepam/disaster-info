@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@preline/accordion": "^2.0.2",
-    "@prisma/client": "4.13.0",
+    "@prisma/client": "^5.21.0",
     "add": "^2.0.6",
     "dayjs": "^1.11.10",
     "flowbite": "^2.2.1",
@@ -24,7 +24,6 @@
     "yarn": "^1.22.21"
   },
   "devDependencies": {
-    "@tailwindcss/line-clamp": "^0.4.4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -39,6 +38,6 @@
     "typescript": "^5"
   },
   "engines": {
-    "node": "20.x"
+    "node": "22.x"
   }
 }
