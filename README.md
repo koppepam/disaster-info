@@ -1,4 +1,4 @@
-気象庁防災情報XMLフォーマット ( https://xml.kishou.go.jp/index.html ) をもとに作成しています。
+気象庁防災情報XMLフォーマット ( https://xml.kishou.go.jp/index.html ) をもとに作成しています。<br />
 2024年2月23日に、データベースの無料期間終了に伴い、データベースが必要な機能（LINEログイン、地域の登録、LINE BOT）を停止しました。
 
 GAS で登録した地域の災害情報を通知する LINE BOT を作成したコードです。
